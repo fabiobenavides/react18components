@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../App";
 
-const Header = ({ darkTheme, toggleTheme }) => {
+const Header = () => {
+
+  const { darkTheme, toggleTheme } = useContext(ThemeContext);
+
   return (
     <header>
       <h2>To-do List</h2>
