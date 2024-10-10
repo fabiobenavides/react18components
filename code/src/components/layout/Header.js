@@ -1,10 +1,7 @@
-import React, { useContext } from "react";
-import { ThemeContext } from "../../contexts/ThemeContext";
+import React from "react";
+import withTheme from "../hocs/withTheme";
 
-const Header = () => {
-
-  const { darkTheme, toggleTheme } = useContext(ThemeContext);
-
+const Header = ({ darkTheme, toggleTheme }) => {
   return (
     <header>
       <h2>To-do List</h2>
@@ -32,4 +29,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default withTheme(Header);
