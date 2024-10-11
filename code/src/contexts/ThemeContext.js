@@ -1,14 +1,14 @@
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
+import useTheme from '../hooks/useTheme';
 
 export const ThemeContext = createContext({});
 
 export default function ThemeProvider({children}) {
 
-  const [darkTheme, setDarkTheme] = useState(false);
-  const toggleTheme = () => setDarkTheme(!darkTheme);
+  const value = useTheme();
 
   return (
-    <ThemeContext.Provider value={{darkTheme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
         {children}
     </ThemeContext.Provider>
   )
