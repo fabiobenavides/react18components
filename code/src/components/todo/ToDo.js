@@ -1,10 +1,13 @@
-const ToDo = ({
+import ErrorBoundary from "../../common/ErrorBoundary";
+
+const Inner = ({
   todoItem,
   handleToggleCompleted,
   handleDelete,
   handleEdit,
   idUpdating,
 }) => {
+  console.log(`Todo: ${todoItem.id}:${todoItem.todoText}`);
   return (
     <div
       key={todoItem.id}
@@ -22,7 +25,7 @@ const ToDo = ({
             <i className="fa fa-exclamation-circle"></i>
           </span>
         ) : null}
-        {todoItem.todoText}
+        {todoItem.todoText.slice(0,60)}
       </div>
 
       {idUpdating === todoItem.id ? (
@@ -65,5 +68,28 @@ const ToDo = ({
     </div>
   );
 };
+
+const debug = false;
+
+const ToDoErrorBoundary = (props) => {
+  return (
+    <div className="single-task text-bg-danger">
+      {debug ? (
+        <b>Error processing ToDo: {JSON.stringify(props)}</b>
+      ) : (
+        <b>Problem displaying message</b>
+      )}
+    </div>
+  )
+}
+
+const ToDo = (props) => {
+  return (
+    <ErrorBoundary
+      errorUI={<ToDoErrorBoundary {...props} />}>
+      <Inner {...props} />
+    </ErrorBoundary>
+  )
+}
 
 export default ToDo;
