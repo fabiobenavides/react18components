@@ -33,6 +33,8 @@ const ToDoList = ({
         })
         .filter((todo) => {
           if (searchText?.length > 0) {
+            // Adding  a delay to check the state updates priority
+            for (let i = 0; i < 300000000; i++) {}
             return todo.todoText
               .toLocaleLowerCase()
               .includes(searchText.toLocaleLowerCase());
